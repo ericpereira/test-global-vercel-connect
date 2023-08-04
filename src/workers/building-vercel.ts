@@ -62,6 +62,7 @@ export class VercelDeploymentWorker implements OnModuleInit {
   ) { }
 
   async onModuleInit() {
+    console.log('onModuleInit VercelDeploymentWorker')
     this.jobQueue = await this.jobQueueService.createQueue<VercelDeploymentJobData>({
       name: "building-vercel",
       process: this.handleJob.bind(this),
@@ -91,6 +92,7 @@ export class VercelDeploymentWorker implements OnModuleInit {
   }
 
   private async handleJob(job: VercelDeploymentJob): Promise<void> {
+    console.log('handleJob', this.clientOptions)
     this.deploymentOptions.name = normalizeString(job.data.shopName, '-');
     this.deploymentOptions!.build!.env!.NEXT_PUBLIC_CHANNEL = job.data.channelToken || '';
     //TO DO: Change to the actual backend URL in the environment file

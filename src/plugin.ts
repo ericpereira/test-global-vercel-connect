@@ -30,6 +30,7 @@ export class VercelConnectPlugin implements OnApplicationBootstrap {
   ) { }
 
   async onApplicationBootstrap() {
+    console.log('onApplicationBootstrap VercelConnectPlugin')
     this.channelEvent();
     this.layoutEvent();
   }
@@ -38,11 +39,13 @@ export class VercelConnectPlugin implements OnApplicationBootstrap {
    * Set the plugin options.
    */
   static init(options: VercelPluginOptions): Type<VercelConnectPlugin> {
+    console.log('init vercel connect plugin', this.options)
     this.options = options;
     return VercelConnectPlugin;
   }
 
   private layoutEvent() {
+    console.log('layout event')
     this.eventBus.ofType(TemplateSelectedEvent).subscribe(async (event) => {
       Logger.info(`Channel ${event.ctx.channel.token} template path ${event.path}`, `TemplateSelectedEvent`);
 
@@ -56,6 +59,7 @@ export class VercelConnectPlugin implements OnApplicationBootstrap {
 
   //Generate default template
   private channelEvent() {
+    console.log('channel event')
     this.eventBus.ofType(CreateShopEvent).subscribe(async (event) => {
       this.vercelConnectService.deploy(event.ctx,
         event.shopName, // shore name
