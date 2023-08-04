@@ -1,0 +1,1 @@
+export const VERCEL_PLUGIN_OPTIONS = Symbol('VERCEL_PLUGIN_OPTIONS');
