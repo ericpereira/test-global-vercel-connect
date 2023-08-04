@@ -8,13 +8,19 @@
     "strictPropertyInitialization": false,
     "target": "es2019",
     "strict": true,
-    "sourceMap": false,
-    "skipLibCheck": true,
     "outDir": "./dist",
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "declaration": true,
+    "removeComments": false,
+    "noLib": false,
+    "skipLibCheck": true,
+    "sourceMap": true
   },
   "exclude": ["node_modules", "migration.ts", "static", "layouts"],
   "ts-node": {
     "files": true
-  }
+  },
+  "files": [
+    "./index.ts"
+  ]
 }
